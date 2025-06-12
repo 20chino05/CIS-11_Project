@@ -1,9 +1,7 @@
-
 .ORIG x3000
 LEA	 R0, WEL
 PUTS 
 WEL	.STRINGZ "Enter 5 scores: (0 - 99)"
-
 LD R0, NEWLINE
 OUT
  ; When I enter test scores from descending or ascending order but when highest number in the middle 
@@ -13,49 +11,36 @@ LEA R6, GRADES
 STR R3, R6, #0
 JSR GET_LETTER
 JSR POP
-
 LD R0, NEWLINE
 ; getting rid OUT
-
 JSR GET_GRADE
 LEA R6, GRADES
 STR R3, R6, #1
 JSR GET_LETTER
 JSR POP
-
-
 LD R0, NEWLINE
 OUT
-
 JSR GET_GRADE
 LEA R6, GRADES
 STR R3, R6, #2
 JSR GET_LETTER
 JSR POP
-
 LD R0, NEWLINE
 OUT
-
 JSR GET_GRADE
 LEA R6, GRADES
 STR R3, R6, #3
 JSR GET_LETTER
 JSR POP
-
-
 LD R0, NEWLINE
 OUT
-
 JSR GET_GRADE
 LEA R6, GRADES
 STR R3, R6, #4
 JSR GET_LETTER
 JSR POP
-
-
 LD R0, NEWLINE
 OUT
-
 CALCULATE_MAX
 LD R1, NUM_TESTS 	
 LEA R2, GRADES 		
@@ -63,13 +48,11 @@ LD R4, GRADES
 ST R4, MAX_GRADE
 ADD R2, R2, #1      ;getting rid of
 ADD R1, R1, #-1
-
 LOOP1 LDR R5, R2, #0		; a pointer of the value counter takes the value in 4 becomes negative
 NOT R4, R4				; With these two line what storing in 4 being G(0) we have negative 9
 ADD R4, R4, #1  		; What happing is when you not something taking the binary and flipping around the bits and whne you do this you don't get but add 1 to get in binary
 ADD R5, R5, R4	
 BRp NEXT1
-
 ADD R2, R2, #1
 LD R4, GRADES ;getting rid of
 AND R5, R5,#0
@@ -84,11 +67,9 @@ AND R1, R1, #0
 JSR BREAK_INT
 LD R0,SPACE 
 OUT
-
 JSR CLEAR_REG
 LD R0, NEWLINE
 OUT	
-
 CALCULATE_MIN
 LD R1, NUM_TESTS 	 
 LEA R2, GRADES 	
@@ -96,9 +77,7 @@ LD R4, GRADES
 ST R4, MIN_GRADE
 ADD R2, R2, #1
 ADD R1, R1, #-1
-
-LOOP2 	LDR R5, R2, #0		
-	
+LOOP2 	LDR R5, R2, #0			
 NOT R4, R4
 ADD R4, R4, #1		
 ADD R5, R5, R4
@@ -283,31 +262,22 @@ PUTS
 HALT
 BASELINE 	.FILL xC000
 ERROR		.STRINGZ "STACK UNDERFLOW OR UNDERFLOW. HALTING PROGRAM"
-
-
 GET_LETTER
-AND R2, R2, #0			; CLEAR R2
-
-A_GRADE	LD R0, A_NUM			; LOAD NUMBER VALUE 
-LD R1, A_LET		; LOAD SYMBOL VALUE 
-
-ADD R2, R3, R0		; COMPARE INPUT TO VALUE OF GRADE
-BRzp STR_GRADE		; IF POS OR ZERO STORE GRADE
-
+AND R2, R2, #0			
+A_GRADE	LD R0, A_NUM			
+LD R1, A_LET		
+ADD R2, R3, R0		
+BRzp STR_GRADE		
 B_GRADE	AND R2, R2, #0
 LD R0, B_NUM
 LD R1, B_LET
-
 ADD R2, R3, R0
 BRzp STR_GRADE
-
 C_GRADE	AND R2, R2, #0
 LD R0, C_NUM
 LD R1, C_LET
-
 ADD R2, R3, R0
 BRzp STR_GRADE
-
 D_GRADE	AND R2, R2, #0
 LD R0, D_NUM
 LD R1, D_LET
@@ -355,7 +325,6 @@ BRP FAIL
 LD R1, SAVELOC5		
 LD R3, SAVELOC3
 RET
-
 FAIL 	LEA R0, FAIL_STR	
 PUTS
 LD R0, NEWLINE2
